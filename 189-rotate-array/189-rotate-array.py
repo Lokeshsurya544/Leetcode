@@ -3,4 +3,8 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        nums[:]= nums[-k % len(nums):]+nums[:-k % len(nums)]
+        if len(nums)<=2 and k%2!=0:
+            nums[:]=nums[::-1]
+        else:
+            nums[:] =  (nums[len(nums)-k:]+nums[:len(nums)-k])
+    
