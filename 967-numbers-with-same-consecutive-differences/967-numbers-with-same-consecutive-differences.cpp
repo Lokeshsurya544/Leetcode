@@ -1,23 +1,47 @@
-class Solution {
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Solution
+{
 public:
-    void dfs(int i, int d, int cnt, int n, int k, set<int>& res) {
-        if(d < 0 || d > 9) return;
-        i = i * 10 + d;
-        cnt++;
-        if(cnt == n) {
-            res.insert(i);
+    vector<int> ans;
+
+    int countDigit(int n)
+    {
+        int count = 0;
+        while (n > 0)
+        {
+            count++;
+            n = n / 10;
+        }
+        return count;
+    }
+
+    void findNumber(int num, int n, int k)
+    {
+        if (countDigit(num) == n)
+        {
+            ans.push_back(num);
             return;
         }
-        dfs(i, d - k, cnt, n, k, res);
-        dfs(i, d + k, cnt, n, k, res);
-    }
-    vector<int> numsSameConsecDiff(int n, int k) {
-        set<int> res;
-        for(int i = 1; i < 10; i++) {
-            dfs(0, i, 0, n, k, res);
+        for (int i = 0; i <= 9; i++)
+        {
+            int ld = num % 10;
+            if (abs(ld - i) == k)
+            {
+                int number = num * 10 + i;
+                findNumber(number, n, k);
+            }
         }
-        vector<int> ans;
-        for(int i : res) ans.push_back(i);
+    }
+
+    vector<int> numsSameConsecDiff(int n, int k)
+    {
+        for (int i = 1; i <= 9; i++)
+        {
+            findNumber(i, n, k);
+        }
         return ans;
     }
 };
