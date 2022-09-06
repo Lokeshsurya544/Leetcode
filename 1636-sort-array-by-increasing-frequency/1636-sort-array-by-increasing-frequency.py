@@ -1,54 +1,17 @@
-#include <iostream>
-#include <vector>
-#include <map>
-#include <algorithm>
-using namespace std;
+# https://leetcode.com/problems/sort-array-by-increasing-frequency/
 
-bool func(pair<int, int> a, pair<int, int> b)
-{
-    cout << a.first << " " << b.first << endl;
-    if (a.second < b.second)
-    {
-        return true;
-    }
-    else if (a.second > b.second)
-    {
-        return false;
-    }
-    else
-    {
-        return a.first >= b.first;
-    }
-}
+from collections import defaultdict
 
-class Solution
-{
-public:
-    vector<int> frequencySort(vector<int> &nums)
-    {
-        int n = nums.size();
-        map<int, int> freq;
-        for (int i = 0; i < n; i++)
-        {
-            freq[nums[i]]++;
-        }
-        vector<pair<int, int>> li;
-        for (auto x : freq)
-        {
-            cout << x.first << endl;
-            li.push_back({x.first, x.second});
-        }
-        sort(li.begin(), li.end(), func);
-        vector<int> res;
-        for (auto x : li)
-        {
-            int f = x.first;
-            int s = x.second;
-            while (s--)
-            {
-                res.push_back(f);
-            }
-        }
-        return res;
-    }
-};
+
+class Solution:
+    def frequencySort(self, nums):
+        freq = defaultdict(int)
+        for i in nums:
+            freq[i] += 1
+
+        x = sorted(freq.items(), key=lambda i: (i[1], -i[0]))
+        res = []
+        for i, j in x:
+            for _ in range(j):
+                res.append(i)
+        return res
