@@ -6,7 +6,6 @@ class Solution:
         score = 0
         res=0
         while ptr1 <= ptr2:
-            print(score,res)
             if power >= tokens[ptr1]:
                 power -= tokens[ptr1]
                 score += 1
