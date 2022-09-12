@@ -12,7 +12,7 @@ class Solution:
                 if res<score:
                     res=score
                 ptr1 += 1
-            elif score > 0 and tokens[ptr1] > power:
+            elif score > 0:
                 power += tokens[ptr2]
                 score -= 1
                 if res<score:
