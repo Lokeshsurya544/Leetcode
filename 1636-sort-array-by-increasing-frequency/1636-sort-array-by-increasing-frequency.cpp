@@ -6,7 +6,6 @@ using namespace std;
 
 bool func(pair<int, int> a, pair<int, int> b)
 {
-    cout << a.first << " " << b.first << endl;
     if (a.second < b.second)
     {
         return true;
@@ -35,7 +34,6 @@ public:
         vector<pair<int, int>> li;
         for (auto x : freq)
         {
-            cout << x.first << endl;
             li.push_back({x.first, x.second});
         }
         sort(li.begin(), li.end(), func);
