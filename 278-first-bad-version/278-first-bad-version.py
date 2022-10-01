@@ -10,9 +10,7 @@ class Solution:
             mid = (l+r)//2
             if isBadVersion(mid):
                 res = mid
-                mid -= 1
-                r = mid
+                r = mid-1
             else:
-                l = mid
-                l += 1
+                l = mid+1
         return res
